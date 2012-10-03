@@ -1,0 +1,9 @@
+<window border="none" apply="org.zkoss.zkdemo.monitor.PieChartCtrl">
+	<chart id="chart" type="pie" width="900px" height="600px"/>
+	<listbox visible="false">
+		<listhead>
+			<listheader label="" sort="auto" />
+			<listheader label="" sort="auto" />
+		</listhead>
+	</listbox>
+</window>

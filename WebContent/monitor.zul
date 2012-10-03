@@ -1,0 +1,75 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<?component name="stats" macroURI="stats.zul"?>
+<window id="win" border="none" apply="org.zkoss.zkdemo.monitor.MonitorCtrl" width="100%">
+<zscript><![CDATA[
+import org.zkoss.zkdemo.monitor.RequestComparator;
+Comparator timeStamp = RequestComparator.timeStamp;
+Comparator _timestamp = RequestComparator._timeStamp;
+Comparator serverExecution = RequestComparator.serverExecution;
+Comparator _serverExecution = RequestComparator._serverExecution;
+Comparator clientExecution = RequestComparator.clientExecution;
+Comparator _clientExecution = RequestComparator._clientExecution;
+]]></zscript>
+<borderlayout height="300px">
+	<center autoscroll="true">
+		<tabbox>
+		<tabs>
+			<tab label="Performance Meter" />
+			<tab label="Server Statistics" />
+		</tabs>
+		<tabpanels>
+			<tabpanel>
+				<!-- *************************** *************************** -->
+				<window id="performanceWin" border="none" apply="org.zkoss.zkdemo.monitor.PerformanceCtrl">
+					
+					<button id="status" label="Start" image="/img/play.png" height="30px"></button>
+					<button id="refresh" label="Refresh" height="30px"></button>
+					<button id="clear" label="Clear" height="30px"></button>
+					<button id="barChart" label="Stage Comparison Chart" height="30px"></button>
+					<button id="pieChart" label="Time Percentage Chart" height="30px"></button>
+					
+					<separator height="10px"/>
+					<listbox id="summaryLBox">
+						<listhead>
+							<listheader label="Server Execution Average Time (ms)"/>
+							<listheader label="Client Execution Average Time (ms)"/>
+							<listheader label="Network Latency Average Time (ms)"/>
+							<listheader label="Total Average Time (ms)"/>
+						</listhead>
+						<listitem>
+							<listcell id="serverLCell" />
+							<listcell id="clientLCell" />
+							<listcell id="networkCell" />
+							<listcell id="totalLCell" />
+						</listitem>
+					</listbox>
+					<separator height="10px"/>
+					<listbox id="monitorLBox" checkmark="true" multiple="true">
+						<listhead>
+							<listheader label="Request Id" width="100px"/>
+							<listheader label="Timestamp" width="100px" sortAscending="${timeStamp}" sortDescending="${_timestamp}"/>
+							<listheader label="Server Execution (ms)" sortAscending="${serverExecution}" sortDescending="${_serverExecution}"/>
+							<listheader label="Client Execution (ms)" sortAscending="${clientExecution}" sortDescending="${_clientExecution}"/>
+							<listheader label="Network Latency (ms)"/>
+							<listheader label="Total Time (ms)" />
+						</listhead>
+					</listbox>
+				</window>
+			</tabpanel>
+			<tabpanel>
+				<stats/>
+			</tabpanel>
+		</tabpanels>
+		</tabbox>
+	</center>
+</borderlayout>
+</window>
+
+<tabbox id="panelTBox" width="100%">
+	<tabs>
+	</tabs>
+	<tabpanels>
+	</tabpanels>
+</tabbox>
+</zk>

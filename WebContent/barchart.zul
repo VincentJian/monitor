@@ -1,0 +1,12 @@
+<window border="none" apply="org.zkoss.zkdemo.monitor.BarChartCtrl">
+	<chart id="chart" type="bar" width="900px" height="600px"/>
+	<listbox id="listbox" visible="false">
+		<listhead>
+			<listheader label="Request Latency Average Time (ms)" />
+			<listheader label="Server Execution Average Time (ms)" />
+			<listheader label="Response Latency Average Time (ms)"/>
+			<listheader label="Client Execution Average Time (ms)"/>
+			<listheader label="Total Average Time (ms)" />
+		</listhead>
+	</listbox>
+</window>
