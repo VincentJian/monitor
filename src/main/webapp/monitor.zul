@@ -1,0 +1,77 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?component name="stats" macroURI="stats.zul"?>
+<zk>
+<style>
+.iconbutton i {
+	font-size: 1.2em;
+}
+.iconbutton .start {
+	color: #339933;
+}
+.iconbutton .stop {
+	color: #CC0033;
+}
+</style>
+<window id="win" border="none" apply="org.zkoss.performance.monitor.MonitorCtrl" vflex="1" hflex="1">
+<zscript><![CDATA[
+import org.zkoss.performance.monitor.RequestComparator;
+Comparator timeStamp = RequestComparator.timeStamp;
+Comparator _timestamp = RequestComparator._timeStamp;
+Comparator serverExecution = RequestComparator.serverExecution;
+Comparator _serverExecution = RequestComparator._serverExecution;
+Comparator clientExecution = RequestComparator.clientExecution;
+Comparator _clientExecution = RequestComparator._clientExecution;
+]]></zscript>
+	<tabbox vflex="1">
+		<tabs>
+			<tab label="Performance Meter" />
+			<tab label="Server Statistics" />
+		</tabs>
+		<tabpanels vflex="1">
+			<tabpanel vflex="1">
+				<!-- *************************** *************************** -->
+				<window id="performanceWin" border="none" vflex="1" apply="org.zkoss.performance.monitor.PerformanceCtrl">
+					<vlayout vflex="1">
+						<hlayout vflex="min">
+							<button id="status" label="Start" height="30px" sclass="iconbutton"></button>
+							<button id="refresh" label="Refresh" height="30px"></button>
+							<button id="clear" label="Clear" height="30px"></button>
+							<button id="barChart" label="Stage Comparison Chart" height="30px"></button>
+							<button id="pieChart" label="Time Percentage Chart" height="30px"></button>
+						</hlayout>
+						<listbox id="summaryLBox" height="66px">
+							<custom-attributes org.zkoss.zul.nativebar="true" />
+							<listhead>
+								<listheader label="Server Execution Average Time (ms)"/>
+								<listheader label="Client Execution Average Time (ms)"/>
+								<listheader label="Network Latency Average Time (ms)"/>
+								<listheader label="Total Average Time (ms)"/>
+							</listhead>
+							<listitem>
+								<listcell id="serverLCell" />
+								<listcell id="clientLCell" />
+								<listcell id="networkCell" />
+								<listcell id="totalLCell" />
+							</listitem>
+						</listbox>
+						<listbox id="monitorLBox" checkmark="true" multiple="true" vflex="1">
+							<custom-attributes org.zkoss.zul.nativebar="true" />
+							<listhead>
+								<listheader label="Request Id" width="100px"/>
+								<listheader label="Timestamp" width="100px" sortAscending="${timeStamp}" sortDescending="${_timestamp}"/>
+								<listheader label="Server Execution (ms)" sortAscending="${serverExecution}" sortDescending="${_serverExecution}"/>
+								<listheader label="Client Execution (ms)" sortAscending="${clientExecution}" sortDescending="${_clientExecution}"/>
+								<listheader label="Network Latency (ms)"/>
+								<listheader label="Total Time (ms)" />
+							</listhead>
+						</listbox>
+					</vlayout>
+				</window>
+			</tabpanel>
+			<tabpanel>
+				<stats/>
+			</tabpanel>
+		</tabpanels>
+	</tabbox>
+</window>
+</zk>

@@ -1,0 +1,3 @@
+<window border="none" apply="org.zkoss.performance.monitor.BarChartCtrl">
+	<charts id="chart" type="column" title="Request Execution Time" width="800" height="600" />
+</window>

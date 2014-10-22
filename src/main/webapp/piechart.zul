@@ -1,0 +1,3 @@
+<window border="none" apply="org.zkoss.performance.monitor.PieChartCtrl">
+	<charts id="chart" type="pie" title="Average Request Execution Time" width="600" height="600" />
+</window>
